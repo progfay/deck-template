@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "mdx-deck index.mdx",
+    "start": "serve public",
     "build": "mdx-deck build index.mdx",
-    "serve": "serve public"
+    "dev": "mdx-deck index.mdx"
   },
   "repository": {
     "type": "git",
