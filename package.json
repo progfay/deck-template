@@ -1,0 +1,25 @@
+{
+  "name": "deck-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck index.mdx",
+    "build": "mdx-deck build index.mdx",
+    "serve": "serve public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/progfay/deck-template.git"
+  },
+  "author": "progfay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/progfay/deck-template/issues"
+  },
+  "homepage": "https://github.com/progfay/deck-template#readme",
+  "devDependencies": {
+    "mdx-deck": "^4.1.1",
+    "serve": "^11.3.0"
+  }
+}
