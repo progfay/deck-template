@@ -1,4 +1,6 @@
 import React from 'react'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+import dracula from 'prism-react-renderer/themes/dracula'
 
 const UNIT_PX = 5
 
@@ -8,7 +10,8 @@ const dimensions = {
   small: `${UNIT_PX * 1}px`,
   medium: `${UNIT_PX * 2}px`,
   large: `${UNIT_PX * 4}px`,
-  xlarge: `${UNIT_PX * 8}px`
+  xlarge: `${UNIT_PX * 8}px`,
+  xxlarge: `${UNIT_PX * 12}px`
 }
 
 const colors = {
@@ -77,8 +80,12 @@ export default {
       marginRight: dimensions.small
     },
     pre: {
-      color: colors.black,
-      bg: colors.white
+      width: '100%',
+      borderRadius: dimensions.small,
+      background: colors.lightgray,
+      padding: dimensions.xlarge,
+      fontSize: '0.9em',
+      margin: `${dimensions.medium} ${dimensions.zero}`
     },
     inlineCode: {
       color: colors.black,
@@ -136,5 +143,47 @@ export default {
       maxWidth: '100%'
     }
   },
-  components: {}
+  components: {
+    pre: props => {
+      const { className: preClassName, children } = props
+      const { className: codeClassName, children: code } = children.props
+      const [language, ...rest] = codeClassName.replace(/^language-/, '').split(':')
+      const fileName = rest.join(':')
+
+      console.log(props, fileName)
+
+      return (
+        <Highlight {...defaultProps} code={code.trim()} language={language} theme={dracula}>
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={`${preClassName} ${className}`} style={{ ...style, ...(fileName ? { paddingTop: '60px' } : {}) }}>
+              {
+                fileName &&
+                  <p style={{
+                    position: 'absolute',
+                    transform: `translate(-${dimensions.xlarge}, -${dimensions.xxlarge})`,
+                    borderRadius: `${dimensions.small} ${dimensions.zero}`,
+                    fontSize: '0.7em',
+                    padding: `${dimensions.small} ${dimensions.large}`,
+                    background: '#6272A4',
+                    margin: 0
+                  }}
+                  >
+                    {fileName}
+                  </p>
+              }
+              {
+                tokens.map((line, i) => (
+                  <div key={i} {...getLineProps({ line, key: i })}>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token, key })} />
+                    ))}
+                  </div>
+                ))
+              }
+            </pre>
+          )}
+        </Highlight>
+      )
+    }
+  }
 }

@@ -21,5 +21,8 @@
   "devDependencies": {
     "mdx-deck": "^4.1.1",
     "serve": "^11.3.0"
+  },
+  "dependencies": {
+    "prism-react-renderer": "^1.1.0"
   }
 }
