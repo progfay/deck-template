@@ -23,23 +23,27 @@ const styles = [
     style: { color: colors.comment }
   },
   {
-    types: ['inserted', 'function'],
+    types: ['class-name', 'known-class-name', 'method'],
+    style: { color: colors.cyan }
+  },
+  {
+    types: ['inserted'],
     style: { color: colors.green }
   },
   {
-    types: ['changed'],
+    types: ['changed', 'parameter'],
     style: { color: colors.orange }
   },
   {
-    types: ['string', 'char', 'tag', 'selector'],
+    types: ['tag', 'selector', 'operator', 'keyword'],
     style: { color: colors.pink }
   },
   {
-    types: ['prolog', 'constant', 'builtin'],
+    types: ['prolog', 'constant', 'builtin', 'number'],
     style: { color: colors.purple }
   },
   {
-    types: ['keyword', 'variable'],
+    types: ['variable'],
     style: { color: colors.purple, fontStyle: 'italic' }
   },
   {
@@ -47,7 +51,7 @@ const styles = [
     style: { color: colors.red }
   },
   {
-    types: ['attr-name'],
+    types: ['char', 'string', 'attr-name'],
     style: { color: colors.yellow }
   }
 ]
