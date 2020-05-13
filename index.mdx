@@ -1,3 +1,6 @@
+import { CodeSurfer } from "code-surfer"
+import { dracula } from "@code-surfer/themes"
+import { CodeSlide } from './components/CodeSlide'
 import myTheme from './theme'
 export const theme = myTheme
 
@@ -145,3 +148,21 @@ console.log(3);
 | be         | be          | be           |
 | left       | right       | center       |
 | aligned    | aligned     | aligned      |
+
+---
+
+<CodeSlide>
+
+```js
+console.log(1);
+console.log(2);
+console.log(3);console.log(3);console.log(3);console.log(3);console.log(3);
+```
+
+```diff 1:2 subtitle="log 1"
+```
+
+```diff 3 subtitle="log 3"
+```
+
+</CodeSlide>
