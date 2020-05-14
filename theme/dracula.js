@@ -13,93 +13,51 @@ export const colors = {
   yellow: '#F1FA8C'
 }
 
-const styles = [
-  {
-    types: ['punctuation', 'symbol'],
-    style: { color: colors.foreground }
-  },
-  {
-    types: ['comment'],
-    style: { color: colors.comment }
-  },
-  {
-    types: ['class-name', 'known-class-name', 'method'],
-    style: { color: colors.cyan }
-  },
-  {
-    types: ['inserted'],
-    style: { color: colors.green }
-  },
-  {
-    types: ['changed', 'parameter'],
-    style: { color: colors.orange }
-  },
-  {
-    types: ['tag', 'selector', 'operator', 'keyword'],
-    style: { color: colors.pink }
-  },
-  {
-    types: ['prolog', 'constant', 'builtin', 'number'],
-    style: { color: colors.purple }
-  },
-  {
-    types: ['variable'],
-    style: { color: colors.purple, fontStyle: 'italic' }
-  },
-  {
-    types: ['deleted'],
-    style: { color: colors.red }
-  },
-  {
-    types: ['char', 'string', 'attr-name'],
-    style: { color: colors.yellow }
-  }
-]
-
-export const prismFormat = {
+export const dracula = {
   plain: {
     color: colors.foreground,
     backgroundColor: colors.background
   },
-  styles
-}
-
-export const codeSurferFormat = {
-  colors: {
-    text: colors.foreground,
-    background: colors.background,
-    primary: colors.pink
-  },
-  styles: {
-    CodeSurfer: {
-      tokens: styles.reduce(
-        (accumulator, { types, style }) => (
-          {
-            ...accumulator,
-            ...types.reduce(
-              (acc, type) => ({ ...acc, [type]: style }),
-              {}
-            )
-          }
-        ),
-        {}
-      ),
-      title: {
-        color: colors.foreground,
-        backgroundColor: colors.background
-      },
-      subtitle: {
-        color: '#d6deeb',
-        backgroundColor: 'rgba(10,10,10,0.9)'
-      },
-      pre: {
-        color: colors.foreground,
-        backgroundColor: colors.background
-      },
-      code: {
-        color: colors.foreground,
-        backgroundColor: colors.background
-      }
+  styles: [
+    {
+      types: ['punctuation', 'symbol'],
+      style: { color: colors.foreground }
+    },
+    {
+      types: ['comment'],
+      style: { color: colors.comment }
+    },
+    {
+      types: ['class-name', 'known-class-name', 'method'],
+      style: { color: colors.cyan }
+    },
+    {
+      types: ['inserted'],
+      style: { color: colors.green }
+    },
+    {
+      types: ['changed', 'parameter'],
+      style: { color: colors.orange }
+    },
+    {
+      types: ['tag', 'selector', 'operator', 'keyword'],
+      style: { color: colors.pink }
+    },
+    {
+      types: ['prolog', 'constant', 'builtin', 'number'],
+      style: { color: colors.purple }
+    },
+    {
+      types: ['variable'],
+      style: { color: colors.purple, fontStyle: 'italic' }
+    },
+    {
+      types: ['deleted'],
+      style: { color: colors.red }
+    },
+    {
+      types: ['char', 'string', 'attr-name'],
+      style: { color: colors.yellow }
     }
-  }
+  ]
 }

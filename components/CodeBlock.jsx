@@ -1,6 +1,6 @@
 import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import { prismFormat as dracula, colors as draculaColors } from '../theme/dracula'
+import { dracula, colors as draculaColors } from '../theme/dracula'
 import dimensions from '../theme/dimensions'
 
 export const CodeBlock = props => {
