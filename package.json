@@ -23,6 +23,7 @@
     "serve": "^11.3.0"
   },
   "dependencies": {
-    "prism-react-renderer": "^1.1.0"
+    "prism-react-renderer": "^1.1.0",
+    "styled-components": "^5.1.0"
   }
 }
