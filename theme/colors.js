@@ -6,5 +6,6 @@ export default {
   orange: '#FFA327',
   gray: '#9492B0',
   lightgray: '#EBEBEB',
-  purple: '#9060C0'
+  purple: '#9060C0',
+  pink: '#F2DEDE'
 }
