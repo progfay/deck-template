@@ -60,7 +60,7 @@ export default {
       width: '100%',
       borderRadius: dimensions.small,
       background: colors.lightgray,
-      padding: dimensions.xlarge,
+      padding: `${dimensions.xlarge} ${dimensions.zero}`,
       fontSize: '0.9em',
       margin: `${dimensions.medium} ${dimensions.zero}`,
       whiteSpace: 'pre-wrap'
