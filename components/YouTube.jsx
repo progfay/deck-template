@@ -30,6 +30,10 @@ const Log = styled.code`
 
 const YouTubePlayer = styled.iframe`
   background-color: black;
+  width: 640px;
+  min-width: 640px;
+  height: 360px;
+  min-height: 360px;
 `
 
 const YouTubePlayButton = styled.div`
@@ -47,7 +51,9 @@ const YouTubePlayButton = styled.div`
 
 const YouTubeThumbnail = styled.div`
   width: 640px;
+  min-width: 640px;
   height: 360px;
+  min-height: 360px;
   background-color: ${colors.black};
   background-image: ${props => `url(https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg)`};
   background-repeat: no-repeat;
