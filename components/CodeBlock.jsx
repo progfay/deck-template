@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { dracula, colors as draculaColors } from '../theme/dracula'
 import dimensions from '../theme/dimensions'
 
+const LINE_NUMBERS_COUNTER = 'lineNumbers'
+
 const FileNameBox = styled.p`
   position: absolute;
   transform: translate(-${dimensions.zero}, -${dimensions.xxlarge});
@@ -19,9 +21,35 @@ const FileNameBox = styled.p`
 
 const Line = styled.p`
   margin: 0;
-  padding: ${dimensions.zero} ${props => props.highlight ? `calc(${dimensions.xlarge} - ${dimensions.small})` : dimensions.xlarge};
+  padding: ${dimensions.zero} ${props => (
+    props.highlight
+      ? (props.showLineNumbers ? dimensions.zero : `calc(${dimensions.xlarge} - ${dimensions.small})`)
+      : (props.showLineNumbers ? dimensions.small : dimensions.xlarge)
+  )};
   border-left: ${props => props.highlight ? `solid ${draculaColors.pink} ${dimensions.small}` : 'none'};
   background-color: ${props => props.highlight ? draculaColors.selection : draculaColors.background};
+
+  ${props => props.showLineNumbers && `
+  &::before {
+    counter-increment: ${LINE_NUMBERS_COUNTER};
+    content: counter(${LINE_NUMBERS_COUNTER});
+    width: 2em;
+    display:inline-block;
+    padding-right: 0.5em;
+    margin-right: 1em;
+    text-align: right;
+    border-right: solid 1px ${draculaColors.comment};
+    color: ${props.highlight ? draculaColors.foreground : draculaColors.comment};
+  }
+  `}
+`
+
+const PreformattedText = styled.pre`
+  ${props => props.fileName && `padding-top: ${dimensions.xxlarge};`}
+  counter-reset: ${LINE_NUMBERS_COUNTER};
+  white-space: nowrap;
+  overflow: auto;
+  min-height: fit-content;
 `
 
 export const CodeBlock = props => {
@@ -52,21 +80,32 @@ export const CodeBlock = props => {
     }
   }
 
+  const showLineNumbers = !!(Array.isArray(ranges) && ranges.some(query => query.trim() === 'numbers'))
+
   return (
     <Highlight {...defaultProps} code={code.trim()} language={language} theme={dracula}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={`${preClassName} ${className}`} style={{ ...style, ...(fileName ? { paddingTop: '60px' } : {}) }}>
+        <PreformattedText
+          className={[preClassName, className]}
+          style={style}
+          fileName={fileName}
+        >
           {fileName.trim() && <FileNameBox> {fileName.trim()} </FileNameBox>}
           {
             tokens.map((line, i) => (
-              <Line key={i} highlight={highlightLines.has(i)} {...getLineProps({ line, key: i })}>
+              <Line
+                key={i}
+                {...getLineProps({ line, key: i })}
+                highlight={highlightLines.has(i)}
+                showLineNumbers={showLineNumbers}
+              >
                 {line.map((token, key) => (
                   <span key={key} {...getTokenProps({ token, key })} />
                 ))}
               </Line>
             ))
           }
-        </pre>
+        </PreformattedText>
       )}
     </Highlight>
   )
