@@ -1,32 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import colors from '../theme/colors'
-import dimensions from '../theme/dimensions'
-
-const youtubeRegExp = /^https?:\/\/(www\.)?youtube\.com\/watch\?v=(?<v>[\w-]+)(?<query>(&\w+=[^\s&]*)*)$/
-const shortYoutubeRegExp = /^https?:\/\/youtu\.be\/(?<v>[\w-]+)(\?(?<query>\w+=[^\s&]*(&\w+=[^\s&]*)*))?$/
-
-const ErrorBox = styled.div`
-  width: 640px;
-  height: 360px;
-  background: ${colors.pink};
-  color: ${colors.red};
-  border-radius: ${dimensions.small};
-  padding: ${dimensions.xlarge};
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  font-size: 0.8em;
-`
-
-const Log = styled.code`
-  width: 100%;
-  margin-top: ${dimensions.medium};
-  padding-left: ${dimensions.xlarge};
-  word-break: break-all;
-  overflow: scroll;
-`
 
 const YouTubePlayer = styled.iframe`
   background-color: black;
@@ -90,28 +64,21 @@ const YouTubeThumbnail = styled.div`
   }
 `
 
-export const YouTube = ({ url }) => {
+export const YouTube = ({ videoId }) => {
   const [isActive, setIsActive] = useState(false)
   const onClick = useCallback(() => { setIsActive(true) }, [])
 
-  const match = url.match(youtubeRegExp) || url.match(shortYoutubeRegExp)
-  if (!match || !match.groups || !match.groups.v) {
-    return (
-      <ErrorBox>
-        Invalid YouTube URL: <Log> {url} </Log>
-      </ErrorBox>
-    )
-  }
+  console.log(videoId)
 
   return isActive ? (
     <YouTubePlayer
       title='youtube'
       type='text/html' width='640' height='360'
-      src={`https://www.youtube-nocookie.com/embed/${match.groups.v}?autoplay=1`}
+      src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
       frameBorder='0'
     />
   ) : (
-    <YouTubeThumbnail videoId={match.groups.v} onClick={onClick}>
+    <YouTubeThumbnail videoId={videoId} onClick={onClick}>
       <YouTubePlayButton />
     </YouTubeThumbnail>
   )
