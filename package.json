@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "serve public",
+    "start": "serve -n -l 3000 public",
     "build": "mdx-deck build index.mdx",
+    "preexport": "rm -rf .export output.pdf",
+    "export": "./.tools/export.sh",
     "dev": "mdx-deck index.mdx"
   },
   "repository": {
@@ -20,7 +22,8 @@
   "homepage": "https://github.com/progfay/deck-template#readme",
   "devDependencies": {
     "mdx-deck": "^4.1.1",
-    "serve": "^11.3.0"
+    "serve": "^11.3.2",
+    "website-pdf": "^4.1.0"
   },
   "dependencies": {
     "prism-react-renderer": "^1.1.0",
